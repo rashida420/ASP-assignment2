@@ -1,6 +1,7 @@
 #include<iostream>
 #include<iomanip>
 #include<vector>
+#include<chrono>
 
 using Matrix=std::vector<std::vector<double>>;
 
@@ -47,7 +48,12 @@ int main(){
             std::cin>>Y[i][j];
         }
     }
+    auto start = std::chrono::high_resolution_clock::now();
+
     Matrix Z=matrix_multiplication(X, Y);
+
+    auto end = std::chrono::high_resolution_clock::now();
+
     std::cout<<"\nZ: \n";
     for(int i=0; i<r1; i++){
         for(int j=0; j<c2; j++){
@@ -56,6 +62,10 @@ int main(){
         std::cout<<"\n";
 
     }
+    std::chrono::duration<double>execution_time=(end-start);
+    std::cout << std::fixed << std::setprecision(6);
+    std::cout<<"Execution time in seconds: "<<execution_time.count();
+   
     return 0;
 
 }
