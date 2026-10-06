@@ -3,6 +3,24 @@
 #include<vector>
 
 using Matrix=std::vector<std::vector<double>>;
+
+
+Matrix matrix_multiplication(Matrix X, Matrix Y){
+    int r1=X.size();
+    int c1=X[0].size();
+    int c2=Y[0].size();
+
+    Matrix Z(r1, std::vector<double>(c2, 0.0));
+    for(int i=0; i<r1; i++){
+        for(int k=0; k<c1; k++){
+            for(int j=0; j<c2; j++){
+                Z[i][j] +=X[i][k]*Y[k][j];
+            }
+        }
+    }
+    return Z;
+}
+
 int main(){
     int r1, c1, r2, c2;
     std::cout<<"Rows and columns of the first matrix: ";
@@ -29,14 +47,7 @@ int main(){
             std::cin>>Y[i][j];
         }
     }
-    Matrix Z(r1, std::vector<double>(c2, 0.0));
-    for(int i=0; i<r1; i++){
-        for(int k=0; k<c1; k++){
-            for(int j=0; j<c2; j++){
-                Z[i][j] +=X[i][k]*Y[k][j];
-            }
-        }
-    }
+    Matrix Z=matrix_multiplication(X, Y);
     std::cout<<"\nZ: \n";
     for(int i=0; i<r1; i++){
         for(int j=0; j<c2; j++){
