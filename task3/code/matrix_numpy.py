@@ -25,7 +25,8 @@ def main():
         Z = matrix_multiplication(X, Y)
         
         end=time.perf_counter()
-        print("Result: ", Z)
+        print("Result: ")
+        print(Z)
         print(f"Execution time in seconds: {end-start:.10f}")
         
 main()
